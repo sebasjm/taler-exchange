@@ -1,0 +1,432 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "TALER.CONF" "5" "Mar 21, 2020" "0.6pre1" "GNU Taler"
+.SH NAME
+taler.conf \- Taler configuration file
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.SH DESCRIPTION
+.sp
+The basic structure of the configuration file is the following. The file
+is split into sections. Every section begins with “[SECTIONNAME]” and
+contains a number of options of the form “OPTION=VALUE”. Empty lines and
+lines beginning with a “#” are treated as comments. Files containing
+default values for many of the options described below are installed
+under $TALER_PREFIX/share/taler/config.d/. The configuration file given
+with \fB\-c\fP to Taler binaries overrides these defaults.
+.SS Global Options
+.sp
+The following options are from the “[taler]” section and used by
+virtually all Taler components.
+.INDENT 0.0
+.TP
+.B CURRENCY
+Name of the currency, i.e.\ “EUR” for Euro.
+.UNINDENT
+.sp
+The “[PATHS]” section is special in that it contains paths that can be
+referenced using “$” in other configuration values that specify
+filenames. For Taler, it commonly contains the following paths:
+.INDENT 0.0
+.TP
+.B TALER_HOME
+Home directory of the user, usually “${HOME}”. Can be overwritten by
+testcases by setting ${TALER_TEST_HOME}.
+.TP
+.B TALER_DATA_HOME
+Where should Taler store its long\-term data. Usually
+“${TALER_HOME}/.local/share/taler/”
+.TP
+.B TALER_CONFIG_HOME
+Where is the Taler configuration kept. Usually
+“${TALER_HOME}/.config/taler/”
+.TP
+.B TALER_CACHE_HOME
+Where should Taler store cached data. Usually
+“${TALER_HOME}/.cache/taler/”
+.TP
+.B TALER_RUNTIME_DIR
+Where should Taler store system runtime data (like UNIX domain
+sockets). Usually “${TMP}/taler\-system\-runtime”.
+.UNINDENT
+.SS EXCHANGE OPTIONS
+.sp
+The following options are from the “[exchange]” section and used by most
+exchange tools.
+.INDENT 0.0
+.TP
+.B DB
+Plugin to use for the database, i.e.\ “postgres”
+.TP
+.B PORT
+Port on which the HTTP server listens, i.e.\ 8080.
+.TP
+.B MASTER_PUBLIC_KEY
+Crockford Base32\-encoded master public key, public version of the
+exchange\'s long\-time offline signing key.
+.TP
+.B MASTER_PRIV_FILE
+Location of the master private key on disk. Only used by tools that
+can be run offline (as the master key is for offline signing).
+.TP
+.B BASE_URL
+Specifies the base URL under which the exchange can be reached. Added
+to wire transfers to enable tracking by merchants.
+.TP
+.B AGGREGATOR_IDLE_SLEEP_INTERVAL
+For how long should the aggregator sleep when it is idle before trying
+to look for more work? Default is 60 seconds.
+.TP
+.B SIGNKEY_DURATION
+For how long is a signing key valid?
+.TP
+.B LEGAL_DURATION
+For how long are signatures with signing keys legally valid?
+.TP
+.B LOOKAHEAD_SIGN
+How long do we generate denomination and signing keys ahead of time?
+.TP
+.B LOOKAHEAD_PROVIDE
+How long into the future do we provide signing and denomination keys
+to clients?
+.TP
+.B TERMS_DIR
+Directory where the terms of service of the exchange operator can be fund. The directory must contain sub\-directories for every supported language, using the two\-character language code in lower case, i.e. "en/" or "fr/".  Each subdirectory must then contain files with the terms of service in various formats.  The basename of the file of the current policy must be specified under TERMS_ETAG.  The extension defines the mime type. Supported extensions include "html", "htm", "txt", "pdf", "jpg", "jpeg", "png" and "gif".  For example, using a TERMS_ETAG of "0", the structure could be the following:
+\- $TERMS_DIR/en/0.pdf
+\- $TERMS_DIR/en/0.html
+\- $TERMS_DIR/en/0.txt
+\- $TERMS_DIR/fr/0.pdf
+\- $TERMS_DIR/fr/0.html
+\- $TERMS_DIR/de/0.txt
+.TP
+.B TERMS_ETAG
+Basename of the file(s) in the TERMS_DIR with the current terms of service.  The value is also used for the "Etag" in the HTTP request to control caching. Whenever the terms of service change, the TERMS_ETAG MUST also change, and old values MUST NOT be repeated.  For example, the date or version number of the terms of service SHOULD be used for the Etag.  If there are minor (i.e. spelling) fixes to the terms of service, the TERMS_ETAG probably SHOULD NOT be changed. However, whenever users must approve the new terms, the TERMS_ETAG MUST change.
+.TP
+.B PRIVACY_DIR
+Works the same as TERMS_DIR, just for the privacy policy.
+.TP
+.B PRIVACY_ETAG
+Works the same as TERMS_ETAG, just for the privacy policy.
+.UNINDENT
+.SS EXCHANGE DATABASE OPTIONS
+.sp
+The following options must be in the section "[exchangedb]".
+.INDENT 0.0
+.TP
+.B DURATION_OVERLAP
+How much should validity periods for coins overlap?
+Should be long enough to avoid problems with
+wallets picking one key and then due to network latency
+another key being valid.  The DURATION_WITHDRAW period
+must be longer than this value.
+.TP
+.B IDLE_RESERVE_EXPIRATION_TIME
+After which time period should reserves be closed if they are idle?
+.TP
+.B LEGAL_RESERVE_EXPIRATION_TIME
+After what time do we forget about (drained) reserves during garbage collection?
+.UNINDENT
+.SS EXCHANGE POSTGRES BACKEND DATABASE OPTIONS
+.sp
+The following options must be in section “[exchangedb\-postgres]” if the
+“postgres” plugin was selected for the database.
+.INDENT 0.0
+.TP
+.B CONFIG
+How to access the database, i.e.\ “postgres:///taler” to use the
+“taler” database. Testcases use “talercheck”.
+.UNINDENT
+.SS MERCHANT OPTIONS
+.sp
+The following options are from the “[merchant]” section and used by the
+merchant backend.
+.INDENT 0.0
+.TP
+.B DB
+Plugin to use for the database, i.e.\ “postgres”
+.TP
+.B PORT
+Port on which the HTTP server listens, i.e.\ 8080.
+.TP
+.B WIRE_TRANSFER_DELAY
+How quickly do we want the exchange to send us money? Note that wire
+transfer fees will be higher if we ask for money to be wired often.
+Given as a relative time, i.e.\ “5 s”
+.TP
+.B DEFAULT_MAX_WIRE_FEE
+Maximum wire fee we are willing to accept from exchanges. Given as a
+Taler amount, i.e.\ “EUR:0.1”
+.TP
+.B DEFAULT_MAX_DEPOSIT_FEE
+Maximum deposit fee we are willing to cover. Given as a Taler amount,
+i.e.\ “EUR:0.1”
+.UNINDENT
+.SS MERCHANT POSTGRES BACKEND DATABASE OPTIONS
+.sp
+The following options must be in section “[merchantdb\-postgres]” if the
+“postgres” plugin was selected for the database.
+.INDENT 0.0
+.TP
+.B CONFIG
+How to access the database, i.e.\ “postgres:///taler” to use the
+“taler” database. Testcases use “talercheck”.
+.UNINDENT
+.SS MERCHANT INSTANCES
+.sp
+The merchant configuration must specify a set of instances, containing
+at least the “default” instance. The following options must be given in
+each “[instance\-NAME]” section.
+.INDENT 0.0
+.TP
+.B KEYFILE
+Name of the file where the instance\'s private key is to be stored,
+i.e.\ “${TALER_CONFIG_HOME}/merchant/instance/name.priv”
+.TP
+.B NAME
+Human\-readable name of the instance, i.e.\ “Kudos Inc.”
+.UNINDENT
+.sp
+Additionally, for instances that support tipping, the following options
+are required.
+.INDENT 0.0
+.TP
+.B TIP_EXCHANGE
+Base\-URL of the exchange that holds the reserve for tipping,
+i.e.\ “\fI\%https://exchange.demo.taler.net/\fP”
+.TP
+.B TIP_EXCHANGE_PRIV_FILENAME
+Filename with the private key granting access to the reserve,
+i.e.\ “${TALER_CONFIG_HOME}/merchant/reserve/tip.priv”
+.UNINDENT
+.SS KNOWN EXCHANGES (for merchants and wallets)
+.sp
+The merchant configuration can include a list of known exchanges if the
+merchant wants to specify that certain exchanges are explicitly trusted.
+For each trusted exchange, a section [exchange\-NAME] must exist, where
+NAME is a merchant\-given name for the exchange. The following options
+must be given in each “[exchange\-NAME]” section.
+.INDENT 0.0
+.TP
+.B BASE_URL
+Base URL of the exchange, i.e.\ “\fI\%https://exchange.demo.taler.net/\fP”
+.TP
+.B MASTER_KEY
+Crockford Base32 encoded master public key, public version of the
+exchange\'s long\-time offline signing key
+.TP
+.B CURRENCY
+Name of the currency for which this exchange is trusted, i.e.\ “KUDOS”
+.UNINDENT
+.SS KNOWN AUDITORS (for merchants and wallets)
+.sp
+The merchant configuration can include a list of known exchanges if the
+merchant wants to specify that certain auditors are explicitly trusted.
+For each trusted exchange, a section [auditor\-NAME] must exist, where
+NAME is a merchant\-given name for the exchange. The following options
+must be given in each “[auditor\-NAME]” section.
+.INDENT 0.0
+.TP
+.B BASE_URL
+Base URL of the auditor, i.e.\ “\fI\%https://auditor.demo.taler.net/\fP”
+.TP
+.B AUDITOR_KEY
+Crockford Base32 encoded auditor public key.
+.TP
+.B CURRENCY
+Name of the currency for which this auditor is trusted, i.e.\ “KUDOS”
+.UNINDENT
+.SS MERCHANT ACCOUNT OPTIONS
+.INDENT 0.0
+.TP
+.B PAYTO_URI
+Specifies the payto://\-URL of the account. The general format is
+payto://METHOD/DETAILS.
+.TP
+.B WIRE_RESPONSE (exchange and merchant)
+Specifies the name of the file in which the wire details for this merchant
+account should be located. Used by the Taler exchange service and the
+taler\-merchant\-httpd (to generate and then use the file).
+.TP
+.B HONOR_instance
+Must be set to YES for the instances (where "instance" is the section
+name of the instance) of the merchant backend that should allow
+incoming wire transfers for this bank account.
+.TP
+.B ACTIVE_instance
+Must be set to YES for the instances (where “instance” is the section
+name of the instance) of the merchant backend that should use this
+bank account in new offers/contracts. Setting ACTIVE_instance to YES
+requires also setting HONOR_instance to YES.
+.UNINDENT
+.SS EXCHANGE ACCOUNT OPTIONS
+.sp
+An exchange (or merchant) can have multiple bank accounts. The following
+options are for sections named “[account\-SOMETHING]”. The SOMETHING is
+arbitrary and should be chosen to uniquely identify the bank account for
+the operator.
+.INDENT 0.0
+.TP
+.B PAYTO_URI
+Specifies the payto://\-URL of the account. The general format is
+payto://METHOD/DETAILS.
+.TP
+.B WIRE_GATEWAY_URL
+URL of the wire gateway
+.TP
+.B WIRE_GATEWAY_AUTH_METHOD
+This option determines how the exchange (auditor/wirewatch/aggregator)
+authenticates with the wire gateway.  Choices are \fBbasic\fP and \fBnone\fP\&.
+.TP
+.B USERNAME
+User name for \fBbasic\fP authentication with the wire gateway.
+.TP
+.B PASSWORD
+Password for \fBbasic\fP authentication with the wire gateway.
+.TP
+.B WIRE_RESPONSE
+Specifies the name of the file in which the /wire response for this
+account should be located. Used by the Taler exchange service and the
+taler\-exchange\-wire tool.
+.TP
+.B ENABLE_DEBIT
+Must be set to YES for the accounts that the
+taler\-exchange\-aggregator should debit. Not used by merchants.
+.TP
+.B ENABLE_CREDIT
+Must be set to YES for the accounts that the taler\-exchange\-wirewatch
+should check for credits. It is yet uncertain if the merchant
+implementation may check this flag as well.
+.UNINDENT
+.SS TALER\-BANK AUTHENTICATION OPTIONS (for accounts)
+.sp
+The following authentication options are supported by the “taler\-bank”
+wire plugin. They must be specified in the “[account\-]” section that
+uses the “taler\-bank” plugin.
+.INDENT 0.0
+.TP
+.B TALER_BANK_AUTH_METHOD
+Authentication method to use. “none” or “basic” are currently
+supported.
+.TP
+.B USERNAME
+Username to use for authentication. Used with the “basic”
+authentication method.
+.TP
+.B PASSWORD
+Password to use for authentication. Used with the “basic”
+authentication method.
+.UNINDENT
+.SS EXCHANGE WIRE FEE OPTIONS
+.sp
+For each supported wire method (i.e.\ “x\-taler\-bank” or “sepa”), sections
+named “[fees\-METHOD]” state the (aggregate) wire transfer fee and the
+reserve closing fees charged by the exchange. Note that fees are
+specified using the name of the wire method, not by the plugin name. You
+need to replace “YEAR” in the option name by the calendar year for which
+the fee should apply. Usually, fees should be given for serveral years
+in advance.
+.INDENT 0.0
+.TP
+.B WIRE\-FEE\-YEAR
+Aggregate wire transfer fee merchants are charged in YEAR. Specified
+as a Taler amount using the usual amount syntax
+(CURRENCY:VALUE.FRACTION).
+.TP
+.B CLOSING\-FEE\-YEAR
+Reserve closing fee customers are charged in YEAR. Specified as a
+Taler amount using the usual amount syntax (CURRENCY:VALUE.FRACTION).
+.UNINDENT
+.SS EXCHANGE COIN OPTIONS
+.sp
+The following options must be in sections starting with \fB"[coin_]"\fP and
+are used by taler\-exchange\-keyup to create denomination keys.
+.INDENT 0.0
+.TP
+.B VALUE
+Value of the coin, i.e.\ “EUR:1.50” for 1 Euro and 50 Cents (per
+coin).
+.TP
+.B DURATION_WITHDRAW
+How long should the same key be used for clients to withdraw coins of
+this value?
+.TP
+.B DURATION_SPEND
+How long do clients have to spend these coins?
+.TP
+.B FEE_WITHDRAW
+What fee is charged for withdrawl?
+.TP
+.B FEE_DEPOSIT
+What fee is charged for depositing?
+.TP
+.B FEE_REFRESH
+What fee is charged for refreshing?
+.TP
+.B FEE_REFUND
+What fee is charged for refunds? When a coin is refunded, the deposit
+fee is returned. Instead, the refund fee is charged to the customer.
+.TP
+.B RSA_KEYSIZE
+What is the RSA keysize modulos (in bits)?
+.UNINDENT
+.SS AUDITOR OPTIONS
+.sp
+The following options must be in section “[auditor]” for the Taler
+auditor.
+.INDENT 0.0
+.TP
+.B DB
+Plugin to use for the database, i.e.\ “postgres”
+.TP
+.B AUDITOR_PRIV_FILE
+Name of the file containing the auditor’s private key
+.UNINDENT
+.SS AUDITOR POSTGRES BACKEND DATABASE OPTIONS
+.sp
+The following options must be in section “[auditordb\-postgres]” if the
+“postgres” plugin was selected for the database.
+.INDENT 0.0
+.TP
+.B CONFIG
+How to access the database, i.e.\ "postgres:///taler" to use the
+"taler" database. Testcases use “talercheck”.
+.UNINDENT
+.SH SEE ALSO
+.sp
+taler\-exchange\-dbinit(1), taler\-exchange\-httpd(1),
+taler\-exchange\-keyup(1), taler\-exchange\-wire(1).
+.SH BUGS
+.sp
+Report bugs by using \fI\%https://gnunet.org/bugs/\fP or by sending electronic
+mail to <\fI\%taler@gnu.org\fP>.
+.SH AUTHOR
+GNU Taler contributors
+.SH COPYRIGHT
+2014, 2015, 2016 Florian Dold, Benedikt Muller, Sree Harsha Totakura, Christian Grothoff, Marcello Stanisci (GPLv3+ or GFDL 1.3+)
+.\" Generated by docutils manpage writer.
+.

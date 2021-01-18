@@ -1,0 +1,108 @@
+# -*- mode: rec -*-
+#
+# Registry for GNU Name System record types
+#
+
+%rec: RecordType
+%key: Number 
+%type: Number int
+%mandatory: Number
+%typedef: Name_t regexp /^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-][abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-]*$/
+%type: Name Name_t
+%unique: Name
+%mandatory: Name
+%mandatory: Comment
+%allowed: Contact
+%allowed: References
+%sort: Number Name Contact References
+
+Number: 65536
+Name: PKEY
+Comment: GNS zone transfer
+References: LSD0001
+
+Number: 65537
+Name: NICK
+Comment: GNS nick names
+References: LSD0001
+
+Number: 65538
+Name: LEHO
+Comment: legacy hostnames
+References: LSD0001
+
+Number: 65539
+Name: VPN
+Comment: VPN resolution
+References: LSD0001
+
+Number: 65540
+Name: GNS2DNS
+Comment: Delegation to DNS
+References: LSD0001
+
+Number: 65541
+Name: BOX
+Comment: Boxed records (see TLSA/SRV handling in GNS)
+References: LSD0001
+
+Number: 65542
+Name: PLACE
+Comment: social place for SecuShare
+Contact: lynx@gnunet.org
+
+Number: 65543
+Name: PHONE
+Comment: Endpoint for conversation
+Contact: grothoff@gnunet.org
+
+Number: 65544
+Name: RECLAIM_ATTRIBUTE
+Comment: identity attribute
+Contact: schanzen@gnunet.org
+
+Number: 65545
+Name: RECLAIM_TICKET
+Comment: local ticket reference
+Contact: schanzen@gnunet.org
+
+Number: 65548
+Name: DELEGATE
+Comment: for policies
+Contact: schanzen@gnunet.org
+
+Number: 65549
+Name: ATTRIBUTE
+Comment: for reverse lookups
+Contact: schanzen@gnunet.org
+
+Number: 65550
+Name: RECLAIM_ATTRIBUTE_REF
+Comment: for reclaim records
+Contact: schanzen@gnunet.org
+
+Number: 65551
+Name: RECLAIM_MASTER
+Comment: for RECLAIM master
+Contact: schanzen@gnunet.org
+
+Number: 65552
+Name: RECLAIM_TICKET
+Comment: for reclaimOIDC clients
+Contact: schanzen@gnunet.org
+
+Number: 65553
+Name: RECLAIM_OIDC_CLIENT
+Comment: for reclaim OIDC redirect URIs
+Contact: schanzen@gnunet.org
+
+Number: 65554
+Name: RECLAIM_ATTESTATION
+Comment: for reclaim attestation
+Contact: schanzen@gnunet.org
+
+Number: 65555
+Name: RECLAIM_ATTESTATION_REF
+Comment: for attestation reference in a ticket
+Contact: schanzen@gnunet.org
+

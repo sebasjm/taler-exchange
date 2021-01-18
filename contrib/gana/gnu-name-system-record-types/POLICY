@@ -1,0 +1,17 @@
+Each registry entry should contain three values: the "Number" of the
+record type, which must be above 65535 (to avoid conflicts with legacy
+DNS record types), the "Name" of the record type, an optional
+"Contact" for the payment method, and a "Reference" with links to
+further information about the record type.
+
+The "Name" must be unique in the entire registry.  The value must be a
+case insensitive ASCII string and is restricted to alphanumeric
+characters, dots and dashes.
+
+Adding records is possible after expert review, using a
+first-come-first-served policy for unique "Name" allocation.
+Experts are responsible to ensure that the chosen "Name" is
+appropriate for the payment method.
+
+The current contact(s) for expert review are reachable at
+gns-registry@gnunet.org.

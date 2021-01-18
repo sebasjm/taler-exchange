@@ -1,0 +1,27 @@
+taler-exchange (0.9.0-3) unstable; urgency=medium
+
+  * Fix taler-exchange.postrm crash (prevented uninstall).
+  * Split out taler-auditor package.
+  * Setup user and systemd service for taler-auditor-httpd.
+
+ -- Christian Grothoff <grothoff@gnu.org>  Sun, 03 Jan 2020 23:00:00 +0000
+
+taler-exchange (0.9.0-2) unstable; urgency=medium
+
+  * Modify setup to not touch database (too complex anyway).
+  * Fix build of taler-config.
+  * Correct dependencies.
+
+ -- Christian Grothoff <grothoff@gnu.org>  Sat, 02 Jan 2020 23:00:00 +0000
+
+taler-exchange (0.9.0-1) unstable; urgency=medium
+
+  * Fixing various minor issues with the package, in particular how systemd units are started.
+
+ -- Christian Grothoff <grothoff@gnu.org>  Thu, 31 Dec 2020 23:00:00 +0000
+
+taler-exchange (0.9.0-0) unstable; urgency=medium
+
+  * Initial Release.
+
+ -- Christian Grothoff <grothoff@gnu.org>  Thu, 31 Dec 2020 00:00:00 +0000

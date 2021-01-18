@@ -1,0 +1,23 @@
+
+
+};
+
+
+/**
+ * Returns a hint for a given error code.
+ *
+ * @param ec the error code.
+ * @return the hint if it could be found, otherwise "<no hint found>"
+ */
+const char *
+TALER_ErrorCode_get_hint (enum TALER_ErrorCode ec);
+
+
+#if 0 /* keep Emacsens' auto-indent happy */
+{
+#endif
+#ifdef __cplusplus
+}
+#endif
+
+#endif

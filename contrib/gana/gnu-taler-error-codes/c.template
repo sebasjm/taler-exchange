@@ -1,0 +1,5 @@
+
+  {
+    .ec = TALER_EC_{{Name}},
+    .hint = "{{Description}}"
+  },

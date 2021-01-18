@@ -1,0 +1,236 @@
+{
+  "wire_out_amount_inconsistencies": [],
+  "total_wire_out_delta_plus": {
+    "currency": "KUDOS",
+    "value": 0,
+    "fraction": 0
+  },
+  "total_wire_out_delta_minus": {
+    "currency": "KUDOS",
+    "value": 0,
+    "fraction": 0
+  },
+  "reserve_in_amount_inconsistencies": [
+    {
+      "row": 1,
+      "amount_expected": {
+        "currency": "KUDOS",
+        "value": 5,
+        "fraction": 1000000
+      },
+      "amount_wired": {
+        "currency": "KUDOS",
+        "value": 0,
+        "fraction": 0
+      },
+      "wtid": "EVYQ70623BNNGM26CC3FCPRZ2R3Q8ZVRMD8M10W4WGBAHA83RDCG",
+      "timestamp": "Wed Nov 08 18:13:41 2017",
+      "diagnostic": "incoming wire transfer claimed by exchange not found"
+    }
+  ],
+  "total_wire_in_delta_plus": {
+    "currency": "KUDOS",
+    "value": 0,
+    "fraction": 0
+  },
+  "total_wire_in_delta_minus": {
+    "currency": "KUDOS",
+    "value": 5,
+    "fraction": 1000000
+  },
+  "missattribution_in_inconsistencies": [],
+  "total_missattribution_in": {
+    "currency": "KUDOS",
+    "value": 0,
+    "fraction": 0
+  },
+  "row_inconsistencies": [
+    {
+      "table": "reserves_in",
+      "row": 2,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 3,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 4,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 5,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 6,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 7,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 8,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 9,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 10,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 11,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 12,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 13,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 14,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 15,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 16,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 17,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 18,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 19,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 20,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 21,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 22,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 23,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 24,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 25,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 26,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 27,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 28,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 29,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    },
+    {
+      "table": "reserves_in",
+      "row": 30,
+      "wire_offset_hash": "KXG6WNM57M0SYS2S4A34C2XE89C5DBKQGZ78VGQEB8QHDH54DV3EP88TFCYYC3XXGTKADXJX6R3QEQRD420M07RPWS9N3Q4GS78TZ98",
+      "diagnostic": "duplicate wire offset"
+    }
+  ],
+  "row_minor_inconsistencies": [],
+  "total_wire_format_amount": {
+    "currency": "KUDOS",
+    "value": 0,
+    "fraction": 0
+  },
+  "wire_format_inconsistencies": [],
+  "total_amount_lag": {
+    "currency": "KUDOS",
+    "value": 5,
+    "fraction": 1000000
+  },
+  "lag_details": []
+}

@@ -1,0 +1,177 @@
+Sat 14 Nov 2020 05:47:30 PM CET
+    Modify taler-exchange-transfer to continue even after a
+    wire transfer failed due to the bank refusing it because
+    the target account does not exist. Changed the database
+    to track such failures in the respective table.
+    Opens new issue #6647.  -CG
+
+Tue 10 Nov 2020 01:03:22 PM CET
+    Updates to error codes and HTTP status codes for improved
+    consistency. Fixed spelling issues. Ensure main() returns
+    0 when called with '-h' or '--help'.
+    Releasing GNU Taler 0.8.1. -CG
+
+Sat 03 Oct 2020 03:59:45 PM CEST
+    Various minor fixes, code cleanup, updates to more recent
+    GNUnet APIs, new error codes, and timetravel test support.
+    Releasing GNU Taler 0.8.0. -CG
+
+Sun 29 Mar 2020 08:53:46 PM CEST
+    Changed protocol to be more RESTful. Expanded auditor tests.
+    Completed transition to new wire gateway API for bank interaction.
+    Releasing GNU Taler 0.7.0. -CG
+
+Tue 24 Dec 2019 11:09:14 PM CET
+    Releasing GNU Taler 0.6.0. -CG
+
+Sat 17 Aug 2019 10:03:38 PM CEST
+    Remove "currency" field from exchange database, as we only
+    support one currency per exchange anyway. -CG
+
+Wed 26 Jun 2019 03:31:52 PM CEST
+    Adding link signatures to prevent exchange from tracking
+    users using coins falsely believed to have been recovered via /link,
+    bumping protocol version to 4. -CG
+
+Sat 08 Jun 2019 07:54:33 PM CEST
+    Change payto://sepa/ to payto://iban/ as per current spec. -CG
+
+Fri 03 May 2019 05:36:10 PM CEST
+    Add support for compressing bodies during HTTP uploads to
+    exchange and auditor. -CG
+
+Thu 02 May 2019 09:15:37 PM CEST
+    Pass hash of denomination public key in operations from
+    clients to exchange instead of the (larger) full public key.
+    Breaks protocol compatibility, bumping protocol to v3. -CG
+
+Mon Mar 11 03:24:07 CET 2019
+	Completed implementation of #5536 (delete private keys once we
+	no longer need them). -CG
+
+Sat Mar  2 19:09:43 CET 2019
+	Changing denomination key revocation file format and moving them
+	to their own directory (preparations for #5536 resolution). -CG
+
+Sat Feb 23 14:47:12 CET 2019
+	Actually disable 100 CONTINUE. -CG
+
+Sun Aug 19 15:15:48 CEST 2018
+	Increase various limits and rework transaction scopes to
+	improve scalability. -CG
+
+Tue Apr  3 23:29:06 CEST 2018
+	Releasing Taler v0.5.0
+
+Thu Jan  4 11:55:41 CET 2018
+	Fix issue #5234 (aggregator ignoring refunds).
+	Misc. minor fixes to the auditor. -CG
+
+Mon Jan  1 23:15:37 CET 2018
+	Add TALER_EXCHANGE_refund2() API call to libtalerexchange. -CG
+
+Thu Dec 14 15:32:50 CET 2017
+	Replaced taler-exchange-reservemod tool with new taler-bank-transfer
+	tool (#5195).  Removed /admin/add/incoming API, replaced by new
+	taler-exchange-wirewatch tooling. (#5077).
+
+Sat Dec  9 15:21:50 CET 2071
+	Implement refresh protocol optimization, bumping protocol version
+	to v2 (#5178). -CG
+
+Thu Nov  2 17:39:40 CET 2017
+	Limit amount values to 2^53 as we always wanted (#5167). -CG
+
+Thu Nov  2 16:50:46 CET 2017
+	Fixing serious bug in reserve balance calculations, as
+	fees were not always properly included in the summation. -CG
+
+Tue Oct 31 13:43:55 CET 2017
+	Extended crypto API to provide planchet generation functions
+	explicitly (to be used on withdraw, refresh and tipping).
+	Renamed a few API calls to better reflect their functions.
+	Changed a few function signatures to use new structs. -CG
+
+Wed Oct 18 15:20:29 CEST 2017
+	Releasing Taler v0.4.0. -CG
+
+Tue Oct 17 14:32:46 CEST 2017
+	Fix building of /keys response to include full auditor
+	signature set instead of partial map. -CG
+
+Mon Oct 16 12:10:35 CEST 2017
+	Realize JSON-based report formats from auditor (#4963). -CG
+
+Sun Sep 17 16:46:13 CEST 2017
+	Implement /keys cherry picking (#4840). -CG
+
+Wed Sep 13 14:06:44 CEST 2017
+	Add argument to TALER_EXCHANGE_check_keys_current()
+	to force download even if /keys are still considered
+	current. -CG
+
+Fri Jul 14 17:38:54 CEST 2017
+	Fix #4751 by not allowing denomination deletion (GC)
+	to cascade into reserve_out table (and tolerating such
+	deletion failures). This way, denominations will be kept
+	around until the last reserve that references them (or
+	known_coins derived from them) is closed. Naturally, in
+	most case we expect reserves to be closed much faster
+	than DKs, so in practice this should rarely apply. -CG
+
+Sun Jun 11 17:03:56 CEST 2017
+	Finish implementation and testing of automated refunding
+	of expired reserves (#4956). -CG
+
+Tue Jun  6 13:53:34 CEST 2017
+	Releasing taler-exchange 0.3.0. -CG
+
+Mon Apr 17 01:29:07 CEST 2017
+	Add support for HTTP body compression (#4982). -CG
+
+Mon Mar 20 04:37:46 CET 2017
+	Implemented first working version of taler-auditor. -CG
+
+Sat Mar 18 03:44:38 CET 2017
+	Add 'wire_out' table to exchange DB to track outgoing
+	wire transfers. -CG
+
+Fri Nov 18 18:53:30 CET 2016
+	Improved error reporting for bogus wire specifications.
+	Releasing taler-exchange 0.2.0. -CG
+
+Thu Nov 17 16:37:22 CET 2016
+	Added missing idempotency checks for /refresh/reveal. -CG
+
+Thu Nov 17 11:37:56 CET 2016
+	Fixed a few cases of missing database rollbacks, causing the
+	exchange to be stuck. -CG
+
+Mon Jun 20 17:40:49 CEST 2016
+ 	Releasing taler-exchange 0.0.2. -CG
+
+Mon Jun 13 16:35:09 CEST 2016
+	Splitting HTTP service to run on different listen
+	sockets for /admin and /test-APIs and the normal public
+	APIs (#4569). -CG
+
+Thu Jun  9 19:17:02 CEST 2016
+	Rename /deposit/wtid to /track/transaction and
+	/wire/deposits to /track/transfer. -CG
+
+Wed Jun  8 11:32:41 CEST 2016
+	Export libtalerfakebank API so we can use it in testcases for the
+	merchant as well. -CG
+
+Tue Jun  7 15:13:46 CEST 2016
+        Adding public key of the exchange that was used to sign replies
+        to applicable callbacks of libtalerexchange. (This will eventually
+        be needed by the merchant's backend.) -CG
+
+Mon Jun  6 23:59:05 CEST 2016
+	Minor code cleanup, fixing FTBFS when run with just 'make'
+	or when header installed to a location not included.
+	Releasing taler-exchange 0.0.1. -CG
+
+Wed Jun  1 17:27:36 CEST 2016
+	Releasing taler-exchange 0.0.0. -CG

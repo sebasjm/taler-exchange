@@ -1,0 +1,137 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "TALER-BANK-TRANSFER" "1" "Mar 22, 2020" "0.6pre1" "GNU Taler"
+.SH NAME
+taler-bank-transfer \- trigger a transfer at the bank
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.SH SYNOPSIS
+.sp
+\fBtaler\-bank\-transfer\fP
+[\fB\-a\fP\ \fIVALUE\fP\ |\ \fB\-\-amount=\fP‌\fIVALUE\fP]
+[\fB\-b\fP\ \fIURL\fP\ |\ \fB\-\-bank=\fP‌\fIURL\fP]
+[\fB\-c\fP\ \fIFILENAME\fP\ |\ \fB\-\-config=\fP‌\fIFILENAME\fP]
+[\fB\-C\fP\ \fIACCOUNT\fP\ |\ \fB\-\-credit=\fP‌\fIACCOUNT\fP]
+[\fB\-D\fP\ \fIACCOUNT\fP\ |\ \fB\-\-debit=\fP‌\fIACCOUNT\fP]
+[\fB\-h\fP\ |\ \fB\-\-help\fP]
+[\fB\-i\fP\ |\ \fB\-\-credit\-history\fP]
+[\fB\-o\fP\ |\ \fB\-\-debit\-history\fP]
+[\fB\-p\fP\ \fIPASSPHRASE\fP\ |\ \fB\-\-pass=\fP‌\fIPASSPHRASE\fP]
+[\fB\-s\fP\ \fIACCOUNT\-SECTION\fP\ |\ \fB\-\-section=\fP‌\fIACCOUNT\-SECTION\fP]
+[\fB\-S\fP\ \fISTRING\fP\ |\ \fB\-\-subject=\fP‌\fISTRING\fP]
+[\fB\-u\fP\ \fIUSERNAME\fP\ |\ \fB\-\-user=\fP‌\fIUSERNAME\fP]
+[\fB\-v\fP\ |\ \fB\-\-version\fP]
+[\fB\-w\fP\ \fIROW\fP\ |\ \fB\-\-since\-when=\fP‌\fIROW\fP]
+.SH DESCRIPTION
+.sp
+\fBtaler\-bank\-transfer\fP is a command line tool to trigger bank transfers or
+inspect wire transfers for exchange accounts using the wire API.  The tool is
+expected to be used during testing or for diagnostics.
+.sp
+You can do one of the following four operations during one invocation.
+.INDENT 0.0
+.INDENT 3.5
+.INDENT 0.0
+.IP 1. 3
+Execute wire transfer from the exchange to consumer account (\fB\-C\fP).
+.IP 2. 3
+Execute wire transfer from consumer account to the exchange (\fB\-D\fP).
+.IP 3. 3
+Inspect credit history of the exchange (\fB\-i\fP).
+.IP 4. 3
+Inspect debit history of the exchange (\fB\-o\fP).
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.sp
+Doing more than one of these at a time will result in an error.  Note,
+however, that the \fB\-C\fP and \fB\-D\fP options also can be used to act as filters
+on transaction history operations.
+.SH OPTIONS
+.INDENT 0.0
+.TP
+\fB\-a\fP \fIVALUE\fP | \fB\-\-amount=\fP‌\fIVALUE\fP
+Amount to transfer. Given in the Taler\-typical format of
+CURRENCY:VALUE.FRACTION.
+.TP
+\fB\-b\fP \fIURL\fP | \fB\-\-bank=\fP‌\fIURL\fP
+URL at which the bank is operation.  Conflicts with \fB\-s\fP\&.
+.TP
+\fB\-c\fP \fIFILENAME\fP | \fB\-\-config=\fP‌\fIFILENAME\fP
+Use the given configuration file.
+.TP
+\fB\-C\fP \fIACCOUNT\fP | \fB\-\-credit=\fP‌\fIACCOUNT\fP
+When doing a wire transfer from the exchange, the money should be credited to \fIACCOUNT\fP\&.
+Specifies the payto:// URI of the account.  Can also be used as a filter by credit
+account when looking at transaction histories.
+.TP
+\fB\-D\fP \fIACCOUNT\fP | \fB\-\-debit=\fP‌\fIACCOUNT\fP
+When doing a wire transfer to the exchange, the \fIACCOUNT\fP is to be debited.
+Specifies the payto:// URI of the account.  Can also be used as a filter by debit
+account when looking at transaction histories.
+.TP
+\fB\-h\fP | \fB\-\-help\fP
+Print short help on options.
+.TP
+\fB\-i\fP | \fB\-\-credit\-history\fP
+Obtain credit history of the exchange. Conflicts with \fB\-o\fP\&.
+.TP
+\fB\-o\fP | \fB\-\-debit\-history\fP
+Obtain debit history of the exchange. Conflicts with \fB\-i\fP\&.
+.TP
+\fB\-S\fP \fISUBJECT\fP | \fB\-\-subject=\fP‌\fISUBJECT\fP
+Use \fISUBJECT\fP for the wire transfer subject.  Must be a reserve public key for credit operations and a wire transfer identifier for debit operations. If not specified, a random value will be generated instead.
+.TP
+\fB\-s\fP \fIACCOUNT_SECTION\fP | \fB\-\-section=\fP‌\fIACCOUNT\-SECTION\fP
+Obtain exchange account information from the \fIACCOUNT\-SECTION\fP of the configuration. Conflicts with \fB\-u\fP, \fB\-p\fP and \fB\-b\fP\&.  Note that either \fB\-b\fP or \fB\-s\fP must be specified.
+.TP
+\fB\-u\fP \fIUSERNAME\fP | \fB\-\-user=\fP‌\fIUSERNAME\fP
+Specifies the username for authentication.  Optional and conflicts with \fB\-s\fP\&. If neither \fB\-u\fP nor \fB\-s\fP are used, we will attempt to talk to the bank without authentication.
+.TP
+\fB\-p\fP \fIPASSPHRASE\fP | \fB\-\-pass=\fP‌\fIPASSPHRASE\fP
+Specifies the pass phrase for authentication.  Conflicts with \fB\-s\fP\&.
+.TP
+\fB\-v\fP | \fB\-\-version\fP
+Print version information.
+.TP
+\fB\-w\fP \fIROW\fP | \fB\-\-since\-when=\fP‌\fIROW\fP
+Specifies a \fIROW\fP from which the history should be obtained. If not given, the 10 youngest transactions are returned.
+.UNINDENT
+.SH SEE ALSO
+.sp
+taler\-bank\-manage(1), taler.conf(5), \fI\%https://docs.taler.net/core/api\-wire.html#wire\-transfer\-test\-apis\fP
+.SH BUGS
+.sp
+Report bugs by using \fI\%https://gnunet.org/bugs/\fP or by sending electronic
+mail to <\fI\%taler@gnu.org\fP>
+.SH AUTHOR
+GNU Taler contributors
+.SH COPYRIGHT
+2014, 2015, 2016 Florian Dold, Benedikt Muller, Sree Harsha Totakura, Christian Grothoff, Marcello Stanisci (GPLv3+ or GFDL 1.3+)
+.\" Generated by docutils manpage writer.
+.

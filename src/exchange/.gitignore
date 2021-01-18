@@ -1,0 +1,11 @@
+taler-exchange-dbinit
+taler-exchange-keycheck
+taler-exchange-keyup
+taler-exchange-pursemod
+taler-exchange-reservemod
+taler-exchange-httpd
+taler-exchange-wirewatch
+test_taler_exchange_wirewatch-postgres
+test_taler_exchange_httpd_home/.config/taler/account-1.json
+taler-exchange-closer
+taler-exchange-transfer

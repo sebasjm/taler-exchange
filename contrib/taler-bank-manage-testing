@@ -1,0 +1,27 @@
+#!/bin/sh
+# This file is in the public domain
+# Wrapper around 'taler-bank-manage' to first configure the required
+# testing accounts before launching the bank properly.
+#
+# Takes 3 arguments:
+# $1: the configuration file name
+# $2: the database name
+# $3: serve-http or serve-uwsgi
+
+set -eu
+
+if [ "$#" -ne 3 ];
+then
+    echo "illegal number of parameters"
+    exit 1
+fi
+
+# Ensure starting accounts exist
+taler-bank-manage -c $1 --with-db $2 django provide_accounts
+taler-bank-manage -c $1 --with-db $2 django add_bank_account 42
+taler-bank-manage -c $1 --with-db $2 django add_bank_account 43
+
+taler-bank-manage -c $1 --with-db $2 django changepassword_unsafe Exchange x
+
+# Now run Django for good
+exec taler-bank-manage -c $1 --with-db $2 $3
